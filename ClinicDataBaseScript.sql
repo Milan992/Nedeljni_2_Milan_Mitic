@@ -44,6 +44,7 @@ constraint checkJMBG check(JMBG not like '%[^0-9]%')
 
 create table tblClinic(
 ClinicID int identity(1,1) primary key,
+ClinicName varchar(30) not null,
 OpenDate date not null,
 OwnerID int foreign key (OwnerID) references tblOwner(OwnerID) not null,
 Adress varchar(30),
@@ -65,13 +66,14 @@ BirthDate date not null,
 Citinzenship varchar(30),
 UserName varchar(30) check(len(UserName) > 5) not null unique,
 Pass varchar(30) check(len(Pass) > 7) not null,
-ClinicID int foreign key (ClinicID) references tblClinic(ClinicID) not null,
+ClinicID int foreign key (ClinicID) references tblClinic(ClinicID),
 constraint CheckIdCard check(IdCardNumber not like '%[^0-9]%')
 )
 
 create table tblAdmin(
 AdminID int identity(1,1) primary key,
-AccountID int foreign key (AccountID) references tblAccount(AccountID) not null
+AccountID int foreign key (AccountID) references tblAccount(AccountID) not null,
+LoggedIn bit
 )
 
 create table tblManager(
