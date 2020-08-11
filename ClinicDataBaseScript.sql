@@ -90,7 +90,7 @@ ShiftName varchar(10)
 )
 
 Create table tblDoctor(
-DoctorNumber int primary key check(len(DoctorNumber) = 5),
+DoctorNumber varchar(30) primary key check(len(DoctorNumber) = 5),
 AccountID int foreign key (AccountID) references tblAccount(AccountID),
 BankAccount varchar(30) check(len(BankAccount) = 10)  not null unique,
 Department varchar(30),
@@ -106,7 +106,7 @@ PatientID int identity (1,1) primary key,
 AccountID int foreign key (AccountID) references tblAccount(AccountID),
 InsuranceCardNumber varchar(30) not null unique,
 InsuranceCardExpiry date,
-DoctorNumber int foreign key (DoctorNumber) references tblDoctor(DoctorNumber),
+DoctorNumber varchar(30) foreign key (DoctorNumber) references tblDoctor(DoctorNumber),
 constraint CheckInsuranceCardNumber check(InsuranceCardNumber not like '%[^0-9]%')
 )
 

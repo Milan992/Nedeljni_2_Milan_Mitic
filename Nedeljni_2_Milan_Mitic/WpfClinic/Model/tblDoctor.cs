@@ -20,7 +20,7 @@ namespace WpfClinic.Model
             this.tblPatients = new HashSet<tblPatient>();
         }
     
-        public int DoctorNumber { get; set; }
+        public string DoctorNumber { get; set; }
         public Nullable<int> AccountID { get; set; }
         public string BankAccount { get; set; }
         public string Department { get; set; }

@@ -17,20 +17,20 @@ using WpfClinic.ViewModels;
 namespace WpfClinic.Views
 {
     /// <summary>
-    /// Interaction logic for Admin.xaml
+    /// Interaction logic for AddDoctor.xaml
     /// </summary>
-    public partial class Admin : Window
+    public partial class AddDoctor : Window
     {
-        public Admin()
+        public AddDoctor()
         {
             InitializeComponent();
-            this.DataContext = new AdminViewModel(this);
+            this.DataContext = new AddDoctorViewModel(this);
         }
 
-        public Admin(tblAdmin admin)
+        public AddDoctor(tblManager manager)
         {
             InitializeComponent();
-            this.DataContext = new AdminViewModel(this, admin);
+            this.DataContext = new AddDoctorViewModel(this, manager);
         }
     }
 }

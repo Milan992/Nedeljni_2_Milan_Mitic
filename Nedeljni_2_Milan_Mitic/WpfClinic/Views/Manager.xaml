@@ -1,15 +1,15 @@
-﻿<Window x:Class="WpfClinic.Views.Admin"
+﻿<Window x:Class="WpfClinic.Views.Manager"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfClinic.Views"
         mc:Ignorable="d"
-        Title="Admin" Height="450" Width="800">
+        Title="Manager" Height="450" Width="800">
     <Grid>
 
-        <Button Content="Add clinic"
-                Command="{Binding AddClinic, UpdateSourceTrigger=PropertyChanged}"
+        <Button Content="Add doctor"
+                Command="{Binding AddDoctor, UpdateSourceTrigger=PropertyChanged}"
                 HorizontalAlignment="Left"
                 Margin="10,10,0,0"
                 VerticalAlignment="Top"

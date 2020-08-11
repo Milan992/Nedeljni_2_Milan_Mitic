@@ -11,26 +11,17 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WpfClinic.Model;
-using WpfClinic.ViewModels;
 
 namespace WpfClinic.Views
 {
     /// <summary>
-    /// Interaction logic for Admin.xaml
+    /// Interaction logic for Manager.xaml
     /// </summary>
-    public partial class Admin : Window
+    public partial class Manager : Window
     {
-        public Admin()
+        public Manager()
         {
             InitializeComponent();
-            this.DataContext = new AdminViewModel(this);
-        }
-
-        public Admin(tblAdmin admin)
-        {
-            InitializeComponent();
-            this.DataContext = new AdminViewModel(this, admin);
         }
     }
 }

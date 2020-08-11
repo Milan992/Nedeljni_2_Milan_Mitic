@@ -18,7 +18,7 @@ namespace WpfClinic.Model
         public Nullable<int> AccountID { get; set; }
         public string InsuranceCardNumber { get; set; }
         public Nullable<System.DateTime> InsuranceCardExpiry { get; set; }
-        public Nullable<int> DoctorNumber { get; set; }
+        public string DoctorNumber { get; set; }
     
         public virtual tblAccount tblAccount { get; set; }
         public virtual tblDoctor tblDoctor { get; set; }

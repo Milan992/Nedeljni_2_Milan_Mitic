@@ -11,7 +11,35 @@ using WpfClinic.Views;
 namespace WpfClinic
 {
     class Service
-    {
+    {  /// <summary>
+       /// Checks if string is in JMBG format.
+       /// </summary>
+       /// <param name="userName"></param>
+       /// <returns></returns>
+        public bool IsJmbg(string jmbg)
+        {
+            bool isjmbg = false;
+            if (jmbg.Length == 13)
+            {
+                try
+                {
+                    long i = Convert.ToInt64(jmbg);
+                    string date = "1" + jmbg.Substring(4, 3) + "-" + jmbg.Substring(2, 2) + "-" + jmbg.Substring(0, 2);
+                    DateTime dateOfBirth = DateTime.ParseExact(date, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+                    isjmbg = true;
+                }
+                catch
+                {
+                    isjmbg = false;
+                }
+            }
+            else
+            {
+                isjmbg = false;
+            }
+            return isjmbg;
+        }
+
         /// <summary>
         /// Checks if userName and password match first two rows of the ClinicAccess.txt file.
         /// </summary>
@@ -130,12 +158,12 @@ namespace WpfClinic
                         AddClinic addClinic = new AddClinic(account);
                         addClinic.ShowDialog();
 
-                        Admin administrator = new Admin(account);
+                        Admin administrator = new Admin(admin);
                         administrator.ShowDialog();
                     }
                     else
                     {
-                        Admin administrator = new Admin(account);
+                        Admin administrator = new Admin(admin);
                         administrator.ShowDialog();
                     }
                     admin.LoggedIn = true;

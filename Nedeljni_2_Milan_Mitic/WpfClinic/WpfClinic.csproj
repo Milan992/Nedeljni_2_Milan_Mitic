@@ -109,8 +109,11 @@
     <Compile Include="Service.cs" />
     <Compile Include="ViewModels\AddAdminViewModel.cs" />
     <Compile Include="ViewModels\AddClinicViewModel.cs" />
+    <Compile Include="ViewModels\AddDoctorViewModel.cs" />
     <Compile Include="ViewModels\AddManagerViewModel.cs" />
+    <Compile Include="ViewModels\AdminViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\ManagerViewModel.cs" />
     <Compile Include="ViewModels\MasterViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
@@ -120,11 +123,17 @@
     <Compile Include="Views\AddClinic.xaml.cs">
       <DependentUpon>AddClinic.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AddDoctor.xaml.cs">
+      <DependentUpon>AddDoctor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddManager.xaml.cs">
       <DependentUpon>AddManager.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Admin.xaml.cs">
       <DependentUpon>Admin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Manager.xaml.cs">
+      <DependentUpon>Manager.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Master.xaml.cs">
       <DependentUpon>Master.xaml</DependentUpon>
@@ -155,11 +164,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AddDoctor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddManager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Admin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Manager.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -212,6 +229,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="ClinicAccess.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Model\ClinicDataBaseModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ClinicDataBaseModel.edmx</DependentUpon>
@@ -222,12 +245,6 @@
       <DependentUpon>ClinicDataBaseModel.edmx</DependentUpon>
       <LastGenOutput>ClinicDataBaseModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="ClinicAccess.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

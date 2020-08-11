@@ -88,6 +88,7 @@ namespace WpfCompany.ViewModels
                 }
                 else if (service.IsManager(UserName, Password))
                 {
+
                 }
                 else if (service.IsAdmin(UserName, Password))
                 {

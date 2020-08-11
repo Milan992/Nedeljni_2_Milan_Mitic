@@ -141,9 +141,19 @@ namespace WpfClinic.ViewModels
         {
             if (true)
             {
-                if (true)
+                if (Clinic.ClinicName != null && Clinic.OpenDate != null && Clinic.Adress != null && Clinic.NumberOfFloors != null
+                    && Clinic.RoomsByFloor != null && Clinic.OfficeNumber != null && Clinic.NumberOfAmbulanceCarParkings != null
+                    && Clinic.NumberOfAmbulanceCarParkings != null && Owner.FullName != null && Owner.JMBG != null
+                    && Yard != null && Balcony != null)
                 {
-                    return true;
+                    if (service.IsJmbg(Owner.JMBG))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
                 else
                 {
