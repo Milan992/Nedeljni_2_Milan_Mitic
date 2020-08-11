@@ -11,26 +11,17 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WpfClinic.Model;
-using WpfClinic.ViewModels;
 
 namespace WpfClinic.Views
 {
     /// <summary>
-    /// Interaction logic for AddClinic.xaml
+    /// Interaction logic for Patient.xaml
     /// </summary>
-    public partial class AddClinic : Window
+    public partial class Patient : Window
     {
-        public AddClinic()
+        public Patient()
         {
             InitializeComponent();
-            this.DataContext = new AddClinicViewModel(this);
-        }
-
-        public AddClinic(tblAccount account)
-        {
-            InitializeComponent();
-            this.DataContext = new AddClinicViewModel(this, account);
         }
     }
 }

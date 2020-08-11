@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using WpfClinic.Model;
+using WpfClinic.Views;
 
 namespace WpfClinic
 {
@@ -128,6 +129,14 @@ namespace WpfClinic
                         MessageBox.Show("As this is your first LogIn. Please crete a Clinic you want to administrate.");
                         AddClinic addClinic = new AddClinic(account);
                         addClinic.ShowDialog();
+
+                        Admin administrator = new Admin(account);
+                        administrator.ShowDialog();
+                    }
+                    else
+                    {
+                        Admin administrator = new Admin(account);
+                        administrator.ShowDialog();
                     }
                     admin.LoggedIn = true;
                     context.SaveChanges();
@@ -209,6 +218,39 @@ namespace WpfClinic
                 context.SaveChanges();
 
                 MessageBox.Show("Administrator saved.");
+            }
+        }
+
+        internal void AddClinic(tblClinic clinic, tblOwner owner, tblAccount accountToEdit, string date, bool yard, bool balcony)
+        {
+            using (ClinicEntities context = new ClinicEntities())
+            {
+                tblOwner newOwner = new tblOwner();
+                newOwner.FullName = owner.FullName;
+                newOwner.JMBG = owner.JMBG;
+                context.tblOwners.Add(newOwner);
+                context.SaveChanges();
+
+                tblClinic newClinic = new tblClinic();
+                newClinic.ClinicName = clinic.ClinicName;
+                newClinic.Adress = clinic.Adress;
+                newClinic.NumberOfFloors = clinic.NumberOfFloors;
+                newClinic.RoomsByFloor = clinic.RoomsByFloor;
+                newClinic.OfficeNumber = clinic.OfficeNumber;
+                newClinic.Balcony = yard;
+                newClinic.Yard = balcony;
+                newClinic.NumberOfInvalidEntrances = clinic.NumberOfInvalidEntrances;
+                newClinic.NumberOfAmbulanceCarParkings = clinic.NumberOfAmbulanceCarParkings;
+                newClinic.OpenDate = DateTime.ParseExact(date, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+                newClinic.OwnerID = newOwner.OwnerID;
+                context.tblClinics.Add(newClinic);
+                context.SaveChanges();
+
+                tblAccount account = (from a in context.tblAccounts where a.AccountID == accountToEdit.AccountID select a).First();
+                account.ClinicID = newClinic.ClinicID;
+                context.SaveChanges();
+
+                MessageBox.Show("Clinic saved.");
             }
         }
 
@@ -322,7 +364,7 @@ namespace WpfClinic
                             tblAccount account = (from a in context.tblAccounts where doctor.AccountID == a.AccountID select a).First();
                             accounts.Add(account);
                         }
-                        catch 
+                        catch
                         {
                             continue;
                         }
@@ -330,7 +372,7 @@ namespace WpfClinic
                     return accounts;
                 }
             }
-            catch 
+            catch
             {
                 return null;
             }
