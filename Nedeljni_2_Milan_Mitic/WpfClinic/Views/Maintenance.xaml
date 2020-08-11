@@ -1,16 +1,23 @@
-﻿<Window x:Class="WpfClinic.Views.Patient"
+﻿<Window x:Class="WpfClinic.Views.Maintenance"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfClinic.Views"
         mc:Ignorable="d"
-        Title="Patient" Height="450" Width="800">
+        Title="Maintenance" Height="450" Width="800">
     <Grid>
-        <Button Content="Make an appointment"
-                Command="{Binding Appointment, UpdateSourceTrigger=PropertyChanged}"
+        <Button Content="Create report"
+                Command="{Binding AddReport, UpdateSourceTrigger=PropertyChanged}"
                 HorizontalAlignment="Left"
                 Margin="10,10,0,0"
+                VerticalAlignment="Top"
+                Width="150"
+                Height="33" />
+        <Button Content="See your reports"
+                Command="{Binding ViewReports, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="10,50,0,0"
                 VerticalAlignment="Top"
                 Width="150"
                 Height="33" />

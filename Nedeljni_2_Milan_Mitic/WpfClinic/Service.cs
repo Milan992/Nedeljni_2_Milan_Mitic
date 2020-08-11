@@ -249,6 +249,86 @@ namespace WpfClinic
             }
         }
 
+        /// <summary>
+        /// Adds an account to tblAccount and an doctor with account's AccountID in tblDoctor.
+        /// </summary>
+        /// <param name="account"></param>
+        /// <param name="birthDate"></param>
+        /// <param name="clinic"></param>
+        internal void AddDoctor(tblAccount account, tblDoctor doctor, tblShift shift, bool reception, tblManager manager, string birthDate)
+        {
+            using (ClinicEntities context = new ClinicEntities())
+            {
+                tblAccount newAccount = new tblAccount();
+                newAccount.FullName = account.FullName;
+                newAccount.IdCardNumber = account.IdCardNumber;
+                newAccount.Gender = account.Gender;
+                newAccount.Citinzenship = account.Citinzenship;
+                newAccount.UserName = account.UserName;
+                newAccount.Pass = account.Pass;
+                newAccount.BirthDate = DateTime.ParseExact(birthDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+
+                tblAccount managerForClinicID = (from m in context.tblAccounts where m.AccountID == manager.AccountID select m).First();
+                newAccount.ClinicID = managerForClinicID.ClinicID;
+
+                context.tblAccounts.Add(newAccount);
+                context.SaveChanges();
+
+                tblDoctor newDoctor = new tblDoctor();
+                newDoctor.DoctorNumber = doctor.DoctorNumber;
+                newDoctor.AccountID = newAccount.AccountID;
+                newDoctor.BankAccount = doctor.BankAccount;
+                newDoctor.Department = doctor.Department;
+                newDoctor.ShiftID = shift.ShiftID;
+                newDoctor.PatientReception = reception;
+                newDoctor.ManagerID = manager.ManagerID;
+                context.tblDoctors.Add(newDoctor);
+                context.SaveChanges();
+
+                MessageBox.Show("Doctor saved.");
+            }
+        }
+
+        /// <summary>
+        /// Adds an account to tblAccount and an maintenance with account's AccountID in tblMaintenance.
+        /// </summary>
+        /// <param name="account"></param>
+        /// <param name="birthDate"></param>
+        /// <param name="clinic"></param>
+        internal void AddMaintenance(tblAccount account, tblMaintenance maintenance, string birthDate)
+        {
+            using (ClinicEntities context = new ClinicEntities())
+            {
+                tblAccount newAccount = new tblAccount();
+                newAccount.FullName = account.FullName;
+                newAccount.IdCardNumber = account.IdCardNumber;
+                newAccount.Gender = account.Gender;
+                newAccount.Citinzenship = account.Citinzenship;
+                newAccount.UserName = account.UserName;
+                newAccount.Pass = account.Pass;
+                newAccount.BirthDate = DateTime.ParseExact(birthDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+                newAccount.ClinicID = account.ClinicID;
+                context.tblAccounts.Add(newAccount);
+                context.SaveChanges();
+
+                tblMaintenance newMaintenance = new tblMaintenance();
+                if (maintenance.ExpandingClinicPermision == true)
+                {
+                    newMaintenance.ExpandingClinicPermision = maintenance.ExpandingClinicPermision;
+                    newMaintenance.InvalidEntranceResponsibility = false;
+                }
+                else
+                {
+                    newMaintenance.ExpandingClinicPermision = false;
+                    newMaintenance.InvalidEntranceResponsibility = true;
+                }
+                context.tblMaintenances.Add(newMaintenance);
+                context.SaveChanges();
+
+                MessageBox.Show("Maintenance account saved.");
+            }
+        }
+
         internal void AddClinic(tblClinic clinic, tblOwner owner, tblAccount accountToEdit, string date, bool yard, bool balcony)
         {
             using (ClinicEntities context = new ClinicEntities())
@@ -403,6 +483,19 @@ namespace WpfClinic
             catch
             {
                 return null;
+            }
+        }
+
+        /// <summary>
+        /// Gets all shifts from tblShift in database and adds them to a list.
+        /// </summary>
+        /// <returns></returns>
+        public List<tblShift> GetAllShifts()
+        {
+            using (ClinicEntities context = new ClinicEntities())
+            {
+                List<tblShift> list = (from s in context.tblShifts select s).ToList();
+                return list;
             }
         }
     }

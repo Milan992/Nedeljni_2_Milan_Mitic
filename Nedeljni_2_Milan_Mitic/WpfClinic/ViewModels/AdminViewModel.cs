@@ -87,6 +87,45 @@ namespace WpfClinic.ViewModels
             return true;
         }
 
+        private ICommand addMaintenance;
+
+        public ICommand AddMaintenance
+        {
+            get
+            {
+                if (addMaintenance == null)
+                {
+                    addMaintenance = new RelayCommand(param => AddMaintenanceExecute(), param => CanAddMaintenanceExecute());
+                }
+
+                return addMaintenance;
+            }
+        }
+
+        private void AddMaintenanceExecute()
+        {
+            try
+            {
+                tblAccount account = new tblAccount();
+                using (ClinicEntities context = new ClinicEntities())
+                {
+                    account = (from a in context.tblAccounts where a.AccountID == AdminToView.AccountID select a).First();
+                }
+
+                AddMaintenance addMaintenance = new AddMaintenance();
+                addMaintenance.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private bool CanAddMaintenanceExecute()
+        {
+            return true;
+        }
+
         #endregion
     }
 }

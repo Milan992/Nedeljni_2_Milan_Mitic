@@ -10,36 +10,41 @@ using WpfClinic.Views;
 
 namespace WpfClinic.ViewModels
 {
-    class AddDoctorViewModel : ViewModelBase
+    class AddMaintenanceViewModel : ViewModelBase
     {
-        AddDoctor addDoctor;
+        AddMaintenance addMaintenance;
         Service service = new Service();
 
-        #region Constructors
+        #region Costructors
 
-        public AddDoctorViewModel(AddDoctor addDoctorOpen)
+        public AddMaintenanceViewModel(AddMaintenance addMaintenanceOpen)
         {
-            doctor = new tblDoctor();
-            managerToView = new tblManager();
+            addMaintenance = addMaintenanceOpen;
             account = new tblAccount();
+            maintenance = new tblMaintenance();
             genderList = new List<string> { "M", "Z", "N", "X" };
-            shiftList = service.GetAllShifts();
-            addDoctor = addDoctorOpen;
         }
 
-        public AddDoctorViewModel(AddDoctor addDoctorOpen, tblManager manager)
+        public AddMaintenanceViewModel(AddMaintenance addMaintenanceOpen, tblAccount admin)
         {
-            doctor = new tblDoctor();
-            managerToView = manager;
-            account = new tblAccount();
-            genderList = new List<string> { "M", "Z", "N", "X" };
-            shiftList = service.GetAllShifts();
-            addDoctor = addDoctorOpen;
+            addMaintenance = addMaintenanceOpen;
         }
 
         #endregion
 
         #region Properties
+
+        private tblMaintenance maintenance;
+
+        public tblMaintenance Maintenance
+        {
+            get { return maintenance; }
+            set
+            {
+                maintenance = value;
+                OnPropertyChanged("Maintenance");
+            }
+        }
 
         private tblAccount account;
 
@@ -65,18 +70,6 @@ namespace WpfClinic.ViewModels
             }
         }
 
-        private tblDoctor doctor;
-
-        public tblDoctor Doctor
-        {
-            get { return doctor; }
-            set
-            {
-                doctor = value;
-                OnPropertyChanged("Doctor");
-            }
-        }
-
         private string birthDate;
 
         public string BirthDate
@@ -89,54 +82,18 @@ namespace WpfClinic.ViewModels
             }
         }
 
-        private tblManager managerToView;
+        private bool expand;
 
-        public tblManager ManagerToView
+        public bool Expand
         {
-            get { return managerToView; }
+            get { return expand; }
             set
             {
-                managerToView = value;
-                OnPropertyChanged("ManagerToView");
+                expand = value;
+                OnPropertyChanged("Expand");
             }
         }
-
-        private bool reception;
-
-        public bool Reception
-        {
-            get { return reception; }
-            set
-            {
-                reception = value;
-                OnPropertyChanged("Reception");
-            }
-        }
-
-        private List<tblShift> shiftList;
-
-        public List<tblShift> ShiftList
-        {
-            get { return shiftList; }
-            set
-            {
-                shiftList = value;
-                OnPropertyChanged("ShiftList");
-            }
-        }
-
-        private tblShift shift;
-
-        public tblShift Shift
-        {
-            get { return shift; }
-            set
-            {
-                shift = value;
-                OnPropertyChanged("Shift");
-            }
-        }
-
+        
         #endregion
 
         #region Commands
@@ -160,7 +117,8 @@ namespace WpfClinic.ViewModels
         {
             try
             {
-                service.AddDoctor(Account, Doctor, Shift, Reception, ManagerToView, BirthDate);
+                Maintenance.ExpandingClinicPermision = Expand;
+                service.AddMaintenance(Account, Maintenance, BirthDate);
             }
             catch (Exception ex)
             {
@@ -172,13 +130,10 @@ namespace WpfClinic.ViewModels
         {
             if (Account.FullName != null && Account.IdCardNumber != null && Account.Gender != null
                 && BirthDate != null && Account.Citinzenship != null && Account.UserName != null && Account.Pass != null
-                && Doctor.DoctorNumber != null && Doctor.BankAccount != null && Doctor.DoctorNumber != null && Doctor.Department != null
-                && Shift != null && Reception != null)
+                && Expand != null)
             {
                 if (Account.IdCardNumber.Length == 9 && Account.UserName.Length >= 6 && Account.Pass.Length >= 8
-                    && Doctor.DoctorNumber.Length == 5 && Doctor.BankAccount.Length == 10
-                    && int.TryParse(Account.IdCardNumber, out int i) && int.TryParse(Doctor.DoctorNumber, out int j)
-                    && int.TryParse(Doctor.BankAccount, out int k))
+                    && int.TryParse(Account.IdCardNumber, out int i))
                 {
                     return true;
                 }
@@ -212,7 +167,7 @@ namespace WpfClinic.ViewModels
         {
             try
             {
-                addDoctor.Close();
+                addMaintenance.Close();
             }
             catch (Exception ex)
             {

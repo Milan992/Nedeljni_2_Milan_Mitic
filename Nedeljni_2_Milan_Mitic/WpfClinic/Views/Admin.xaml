@@ -7,11 +7,45 @@
         mc:Ignorable="d"
         Title="Admin" Height="450" Width="800">
     <Grid>
-
         <Button Content="Add clinic"
                 Command="{Binding AddClinic, UpdateSourceTrigger=PropertyChanged}"
                 HorizontalAlignment="Left"
                 Margin="10,10,0,0"
+                VerticalAlignment="Top"
+                Width="150"
+                Height="33" />
+        <Button Content="Add maintenance"
+                Command="{Binding AddMaintenance, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="10,50,0,0"
+                VerticalAlignment="Top"
+                Width="150"
+                Height="33" />
+        <Button Content="Add manager"
+                Command="{Binding AddManager, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="10,90,0,0"
+                VerticalAlignment="Top"
+                Width="150"
+                Height="33" />
+        <Button Content="Add patient"
+                Command="{Binding AddPatient, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="10,130,0,0"
+                VerticalAlignment="Top"
+                Width="150"
+                Height="33" />
+        <Button Content="Employee/patient statistics"
+                Command="{Binding Statistics, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="170,10,0,0"
+                VerticalAlignment="Top"
+                Width="150"
+                Height="33" />
+        <Button Content="Risky patients statistics"
+                Command="{Binding RiskStats, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="170,50,0,0"
                 VerticalAlignment="Top"
                 Width="150"
                 Height="33" />
