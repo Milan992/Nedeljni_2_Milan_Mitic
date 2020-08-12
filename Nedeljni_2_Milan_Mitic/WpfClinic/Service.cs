@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using WpfClinic.Model;
 using WpfClinic.Views;
@@ -100,6 +98,25 @@ namespace WpfClinic
                 {
                     account = GetAccount(userName, password);
                     doctor = (from e in context.tblDoctors where e.AccountID == account.AccountID select e).First();
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        internal bool IsMaintenance(string userName, string password)
+        {
+            try
+            {
+                tblAccount account = new tblAccount();
+                tblMaintenance maintenance = new tblMaintenance();
+                using (ClinicEntities context = new ClinicEntities())
+                {
+                    account = GetAccount(userName, password);
+                    maintenance = (from e in context.tblMaintenances where e.AccountID == account.AccountID select e).First();
                     return true;
                 }
             }
@@ -215,6 +232,42 @@ namespace WpfClinic
             {
                 tblAccount account = (from a in context.tblAccounts where a.UserName == userName && a.Pass == password select a).First();
                 return account;
+            }
+        }
+
+        public tblManager GetManager(tblAccount account)
+        {
+            using (ClinicEntities context = new ClinicEntities())
+            {
+                tblManager manager = (from m in context.tblManagers where m.AccountID == account.AccountID select m).First();
+                return manager;
+            }
+        }
+
+        public tblMaintenance GetMaintenance(tblAccount account)
+        {
+            using (ClinicEntities context = new ClinicEntities())
+            {
+                tblMaintenance maintenance = (from m in context.tblMaintenances where m.AccountID == account.AccountID select m).First();
+                return maintenance;
+            }
+        }
+
+        public tblAdmin GetAdmin(tblAccount account)
+        {
+            using (ClinicEntities context = new ClinicEntities())
+            {
+                tblAdmin admin = (from a in context.tblAdmins where a.AccountID == account.AccountID select a).First();
+                return admin;
+            }
+        }
+
+        public tblPatient GetPatient(tblAccount account)
+        {
+            using (ClinicEntities context = new ClinicEntities())
+            {
+                tblPatient patient = (from a in context.tblPatients where a.AccountID == account.AccountID select a).First();
+                return patient;
             }
         }
 

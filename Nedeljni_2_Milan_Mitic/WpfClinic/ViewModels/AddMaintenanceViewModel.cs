@@ -25,11 +25,6 @@ namespace WpfClinic.ViewModels
             genderList = new List<string> { "M", "Z", "N", "X" };
         }
 
-        public AddMaintenanceViewModel(AddMaintenance addMaintenanceOpen, tblAccount admin)
-        {
-            addMaintenance = addMaintenanceOpen;
-        }
-
         #endregion
 
         #region Properties

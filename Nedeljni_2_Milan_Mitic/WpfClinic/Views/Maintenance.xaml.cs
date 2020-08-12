@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfClinic.Model;
+using WpfClinic.ViewModels;
 
 namespace WpfClinic.Views
 {
@@ -22,6 +24,13 @@ namespace WpfClinic.Views
         public Maintenance()
         {
             InitializeComponent();
+            this.DataContext = new MaintenanceViewModel(this);
+        }
+
+        public Maintenance(tblMaintenance maintenance)
+        {
+            InitializeComponent();
+            this.DataContext = new MaintenanceViewModel(this, maintenance);
         }
     }
 }

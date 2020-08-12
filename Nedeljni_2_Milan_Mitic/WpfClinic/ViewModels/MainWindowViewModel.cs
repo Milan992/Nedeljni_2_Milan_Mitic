@@ -85,16 +85,39 @@ namespace WpfCompany.ViewModels
                 }
                 else if (service.IsDoctor(UserName, Password))
                 {
+                    Doctor doctor = new Doctor();
+                    doctor.ShowDialog();
                 }
                 else if (service.IsManager(UserName, Password))
                 {
-
+                    tblAccount account = service.GetAccount(userName, password);
+                    using (ClinicEntities context = new ClinicEntities())
+                    {
+                        tblManager manager = service.GetManager(account);
+                        Manager managerOpen = new Manager(manager);
+                        managerOpen.ShowDialog();
+                    }
                 }
                 else if (service.IsAdmin(UserName, Password))
                 {
+                    tblAccount account = service.GetAccount(userName, password);
+                    tblAdmin admin = service.GetAdmin(account);
+                    Admin adminOpen = new Admin(admin);
+                    adminOpen.ShowDialog();
                 }
                 else if (service.IsPatient(UserName, Password))
                 {
+                    tblAccount account = service.GetAccount(userName, Password);
+                    tblPatient patient = service.GetPatient(account);
+                    Patient patientOpen = new Patient(patient);
+                    patientOpen.ShowDialog();
+                }
+                else if (service.IsMaintenance(UserName, Password))
+                {
+                    tblAccount account = service.GetAccount(userName, Password);
+                    tblMaintenance maintenance = service.GetMaintenance(account);
+                    Maintenance maintenanceOpen = new Maintenance(maintenance);
+                    maintenanceOpen.ShowDialog();
                 }
                 else
                 {

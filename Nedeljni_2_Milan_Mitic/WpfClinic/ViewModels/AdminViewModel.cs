@@ -48,45 +48,6 @@ namespace WpfClinic.ViewModels
 
         #region Commands
 
-        private ICommand addClinic;
-
-        public ICommand AddClinic
-        {
-            get
-            {
-                if (addClinic == null)
-                {
-                    addClinic = new RelayCommand(param => AddClinicExecute(), param => CanAddClinicExecute());
-                }
-
-                return addClinic;
-            }
-        }
-
-        private void AddClinicExecute()
-        {
-            try
-            {
-                tblAccount account = new tblAccount();
-                using (ClinicEntities context = new ClinicEntities())
-                {
-                    account = (from a in context.tblAccounts where a.AccountID == AdminToView.AccountID select a).First();
-                }
-
-                AddClinic addClinic = new AddClinic(account);
-                addClinic.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
-
-        private bool CanAddClinicExecute()
-        {
-            return true;
-        }
-
         private ICommand addMaintenance;
 
         public ICommand AddMaintenance
@@ -122,6 +83,72 @@ namespace WpfClinic.ViewModels
         }
 
         private bool CanAddMaintenanceExecute()
+        {
+            return true;
+        }
+
+        private ICommand addManager;
+
+        public ICommand AddManager
+        {
+            get
+            {
+                if (addManager == null)
+                {
+                    addManager = new RelayCommand(param => AddManagerExecute(), param => CanAddManagerExecute());
+                }
+
+                return addManager;
+            }
+        }
+
+        private void AddManagerExecute()
+        {
+            try
+            {
+                AddManager addManager = new AddManager();
+                addManager.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private bool CanAddManagerExecute()
+        {
+            return true;
+        }
+
+        private ICommand newAccount;
+
+        public ICommand NewAccount
+        {
+            get
+            {
+                if (newAccount == null)
+                {
+                    newAccount = new RelayCommand(param => NewAccountExecute(), param => CanNewAccountExecute());
+                }
+
+                return newAccount;
+            }
+        }
+
+        private void NewAccountExecute()
+        {
+            try
+            {
+                Register register = new Register();
+                register.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private bool CanNewAccountExecute()
         {
             return true;
         }

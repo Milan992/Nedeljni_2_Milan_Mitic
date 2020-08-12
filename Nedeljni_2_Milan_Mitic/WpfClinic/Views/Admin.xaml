@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="Admin" Height="450" Width="800">
     <Grid>
-        <Button Content="Add clinic"
-                Command="{Binding AddClinic, UpdateSourceTrigger=PropertyChanged}"
+        <Button Content="Add patient"
+                Command="{Binding NewAccount, UpdateSourceTrigger=PropertyChanged}"
                 HorizontalAlignment="Left"
                 Margin="10,10,0,0"
                 VerticalAlignment="Top"
@@ -25,13 +25,6 @@
                 Command="{Binding AddManager, UpdateSourceTrigger=PropertyChanged}"
                 HorizontalAlignment="Left"
                 Margin="10,90,0,0"
-                VerticalAlignment="Top"
-                Width="150"
-                Height="33" />
-        <Button Content="Add patient"
-                Command="{Binding AddPatient, UpdateSourceTrigger=PropertyChanged}"
-                HorizontalAlignment="Left"
-                Margin="10,130,0,0"
                 VerticalAlignment="Top"
                 Width="150"
                 Height="33" />

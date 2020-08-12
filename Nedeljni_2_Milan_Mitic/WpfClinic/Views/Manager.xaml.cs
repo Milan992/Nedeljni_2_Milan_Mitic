@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfClinic.Model;
+using WpfDoctor.ViewModels;
 
 namespace WpfClinic.Views
 {
@@ -22,6 +24,13 @@ namespace WpfClinic.Views
         public Manager()
         {
             InitializeComponent();
+            this.DataContext = new ManagerViewModel(this);
+        }
+
+        public Manager(tblManager manager)
+        {
+            InitializeComponent();
+            this.DataContext = new ManagerViewModel(this, manager);
         }
     }
 }
