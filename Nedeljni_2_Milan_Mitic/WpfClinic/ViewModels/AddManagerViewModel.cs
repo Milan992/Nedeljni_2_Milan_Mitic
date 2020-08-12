@@ -23,6 +23,7 @@ namespace WpfClinic.ViewModels
             account = new tblAccount();
             manager = new tblManager();
             genderList = new List<string> { "M", "Z", "N", "X" };
+            clinicList = service.GetAllClinics();
             addManager = addManagerOpen;
         }
 

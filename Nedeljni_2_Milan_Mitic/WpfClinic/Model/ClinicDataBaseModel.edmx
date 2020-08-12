@@ -90,7 +90,7 @@
           <Property Name="PatientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AccountID" Type="int" />
           <Property Name="InsuranceCardNumber" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="InsuranceCardExpiry" Type="date" />
+          <Property Name="InsuranceCardExpiry" Type="date" Nullable="false" />
           <Property Name="DoctorNumber" Type="varchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="tblShift">
@@ -100,7 +100,7 @@
           <Property Name="ShiftID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ShiftName" Type="varchar" MaxLength="10" />
         </EntityType>
-        <Association Name="FK__tblAccoun__Clini__0DF9F0CA">
+        <Association Name="FK__tblAccoun__Clini__38E44ECF">
           <End Role="tblClinic" Type="Self.tblClinic" Multiplicity="0..1" />
           <End Role="tblAccount" Type="Self.tblAccount" Multiplicity="*" />
           <ReferentialConstraint>
@@ -112,7 +112,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblAdmin__Accoun__11CA81AE">
+        <Association Name="FK__tblAdmin__Accoun__3CB4DFB3">
           <End Role="tblAccount" Type="Self.tblAccount" Multiplicity="1" />
           <End Role="tblAdmin" Type="Self.tblAdmin" Multiplicity="*" />
           <ReferentialConstraint>
@@ -124,7 +124,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblClinic__Owner__0564AAC9">
+        <Association Name="FK__tblClinic__Owner__304F08CE">
           <End Role="tblOwner" Type="Self.tblOwner" Multiplicity="1" />
           <End Role="tblClinic" Type="Self.tblClinic" Multiplicity="*" />
           <ReferentialConstraint>
@@ -136,7 +136,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblDoctor__Accou__1B53EBE8">
+        <Association Name="FK__tblDoctor__Accou__463E49ED">
           <End Role="tblAccount" Type="Self.tblAccount" Multiplicity="0..1" />
           <End Role="tblDoctor" Type="Self.tblDoctor" Multiplicity="*" />
           <ReferentialConstraint>
@@ -148,7 +148,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblDoctor__Manag__1E305893">
+        <Association Name="FK__tblDoctor__Manag__491AB698">
           <End Role="tblManager" Type="Self.tblManager" Multiplicity="0..1" />
           <End Role="tblDoctor" Type="Self.tblDoctor" Multiplicity="*" />
           <ReferentialConstraint>
@@ -160,7 +160,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblDoctor__Shift__1D3C345A">
+        <Association Name="FK__tblDoctor__Shift__4826925F">
           <End Role="tblShift" Type="Self.tblShift" Multiplicity="0..1" />
           <End Role="tblDoctor" Type="Self.tblDoctor" Multiplicity="*" />
           <ReferentialConstraint>
@@ -172,7 +172,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblMainte__Accou__28ADE706">
+        <Association Name="FK__tblMainte__Accou__5398450B">
           <End Role="tblAccount" Type="Self.tblAccount" Multiplicity="0..1" />
           <End Role="tblMaintenance" Type="Self.tblMaintenance" Multiplicity="*" />
           <ReferentialConstraint>
@@ -184,7 +184,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblManage__Accou__14A6EE59">
+        <Association Name="FK__tblManage__Accou__3F914C5E">
           <End Role="tblAccount" Type="Self.tblAccount" Multiplicity="1" />
           <End Role="tblManager" Type="Self.tblManager" Multiplicity="*" />
           <ReferentialConstraint>
@@ -196,7 +196,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblPatien__Accou__23E931E9">
+        <Association Name="FK__tblPatien__Accou__4ED38FEE">
           <End Role="tblAccount" Type="Self.tblAccount" Multiplicity="0..1" />
           <End Role="tblPatient" Type="Self.tblPatient" Multiplicity="*" />
           <ReferentialConstraint>
@@ -208,7 +208,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblPatien__Docto__24DD5622">
+        <Association Name="FK__tblPatien__Docto__4FC7B427">
           <End Role="tblDoctor" Type="Self.tblDoctor" Multiplicity="0..1" />
           <End Role="tblPatient" Type="Self.tblPatient" Multiplicity="*" />
           <ReferentialConstraint>
@@ -230,43 +230,43 @@
           <EntitySet Name="tblOwner" EntityType="Self.tblOwner" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblPatient" EntityType="Self.tblPatient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblShift" EntityType="Self.tblShift" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__tblAccoun__Clini__0DF9F0CA" Association="Self.FK__tblAccoun__Clini__0DF9F0CA">
+          <AssociationSet Name="FK__tblAccoun__Clini__38E44ECF" Association="Self.FK__tblAccoun__Clini__38E44ECF">
             <End Role="tblClinic" EntitySet="tblClinic" />
             <End Role="tblAccount" EntitySet="tblAccount" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblAdmin__Accoun__11CA81AE" Association="Self.FK__tblAdmin__Accoun__11CA81AE">
+          <AssociationSet Name="FK__tblAdmin__Accoun__3CB4DFB3" Association="Self.FK__tblAdmin__Accoun__3CB4DFB3">
             <End Role="tblAccount" EntitySet="tblAccount" />
             <End Role="tblAdmin" EntitySet="tblAdmin" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblClinic__Owner__0564AAC9" Association="Self.FK__tblClinic__Owner__0564AAC9">
+          <AssociationSet Name="FK__tblClinic__Owner__304F08CE" Association="Self.FK__tblClinic__Owner__304F08CE">
             <End Role="tblOwner" EntitySet="tblOwner" />
             <End Role="tblClinic" EntitySet="tblClinic" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblDoctor__Accou__1B53EBE8" Association="Self.FK__tblDoctor__Accou__1B53EBE8">
+          <AssociationSet Name="FK__tblDoctor__Accou__463E49ED" Association="Self.FK__tblDoctor__Accou__463E49ED">
             <End Role="tblAccount" EntitySet="tblAccount" />
             <End Role="tblDoctor" EntitySet="tblDoctor" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblDoctor__Manag__1E305893" Association="Self.FK__tblDoctor__Manag__1E305893">
+          <AssociationSet Name="FK__tblDoctor__Manag__491AB698" Association="Self.FK__tblDoctor__Manag__491AB698">
             <End Role="tblManager" EntitySet="tblManager" />
             <End Role="tblDoctor" EntitySet="tblDoctor" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblDoctor__Shift__1D3C345A" Association="Self.FK__tblDoctor__Shift__1D3C345A">
+          <AssociationSet Name="FK__tblDoctor__Shift__4826925F" Association="Self.FK__tblDoctor__Shift__4826925F">
             <End Role="tblShift" EntitySet="tblShift" />
             <End Role="tblDoctor" EntitySet="tblDoctor" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblMainte__Accou__28ADE706" Association="Self.FK__tblMainte__Accou__28ADE706">
+          <AssociationSet Name="FK__tblMainte__Accou__5398450B" Association="Self.FK__tblMainte__Accou__5398450B">
             <End Role="tblAccount" EntitySet="tblAccount" />
             <End Role="tblMaintenance" EntitySet="tblMaintenance" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblManage__Accou__14A6EE59" Association="Self.FK__tblManage__Accou__14A6EE59">
+          <AssociationSet Name="FK__tblManage__Accou__3F914C5E" Association="Self.FK__tblManage__Accou__3F914C5E">
             <End Role="tblAccount" EntitySet="tblAccount" />
             <End Role="tblManager" EntitySet="tblManager" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblPatien__Accou__23E931E9" Association="Self.FK__tblPatien__Accou__23E931E9">
+          <AssociationSet Name="FK__tblPatien__Accou__4ED38FEE" Association="Self.FK__tblPatien__Accou__4ED38FEE">
             <End Role="tblAccount" EntitySet="tblAccount" />
             <End Role="tblPatient" EntitySet="tblPatient" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblPatien__Docto__24DD5622" Association="Self.FK__tblPatien__Docto__24DD5622">
+          <AssociationSet Name="FK__tblPatien__Docto__4FC7B427" Association="Self.FK__tblPatien__Docto__4FC7B427">
             <End Role="tblDoctor" EntitySet="tblDoctor" />
             <End Role="tblPatient" EntitySet="tblPatient" />
           </AssociationSet>
@@ -377,7 +377,7 @@
           <Property Name="PatientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AccountID" Type="Int32" />
           <Property Name="InsuranceCardNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="InsuranceCardExpiry" Type="DateTime" Precision="0" />
+          <Property Name="InsuranceCardExpiry" Type="DateTime" Precision="0" Nullable="false" />
           <Property Name="DoctorNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="tblAccount" Relationship="Self.FK__tblPatien__Accou__494FC0C2" FromRole="tblPatient" ToRole="tblAccount" />
           <NavigationProperty Name="tblDoctor" Relationship="Self.FK__tblPatien__Docto__4A43E4FB" FromRole="tblPatient" ToRole="tblDoctor" />

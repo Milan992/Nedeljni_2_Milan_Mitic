@@ -9,6 +9,11 @@
         Height="450"
         Width="450">
     <Grid>
+        <Label Content="NOTE: Patient can only be registered if there is an existing doctor to choose"
+               HorizontalAlignment="Left"
+               Margin="10,330,0,0"
+               VerticalAlignment="Top"
+               RenderTransformOrigin="-1.579,0.192" />
         <Label Content="Full name:"
                HorizontalAlignment="Left"
                Margin="40,10,0,0"
@@ -151,5 +156,9 @@
                 Margin="120,360,0,0"
                 VerticalAlignment="Top"
                 Width="75" />
+        <Label Content="9 digits"
+               HorizontalAlignment="Left"
+               Margin="310,40,0,0"
+               VerticalAlignment="Top" />
     </Grid>
 </Window>

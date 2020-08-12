@@ -23,6 +23,7 @@ namespace WpfClinic.ViewModels
             managerToView = new tblManager();
             account = new tblAccount();
             genderList = new List<string> { "M", "Z", "N", "X" };
+            clinicList = service.GetAllClinics();
             shiftList = service.GetAllShifts();
             addDoctor = addDoctorOpen;
         }
@@ -33,6 +34,7 @@ namespace WpfClinic.ViewModels
             managerToView = manager;
             account = new tblAccount();
             genderList = new List<string> { "M", "Z", "N", "X" };
+            clinicList = service.GetAllClinics();
             shiftList = service.GetAllShifts();
             addDoctor = addDoctorOpen;
         }
@@ -41,6 +43,30 @@ namespace WpfClinic.ViewModels
 
         #region Properties
 
+        private List<tblClinic> clinicList;
+
+        public List<tblClinic> ClinicList
+        {
+            get { return clinicList; }
+            set
+            {
+                clinicList = value;
+                OnPropertyChanged("ClinicList");
+            }
+        }
+        
+        private tblClinic clinic;
+
+        public tblClinic Clinic
+        {
+            get { return clinic; }
+            set
+            {
+                clinic = value;
+                OnPropertyChanged("Clinic");
+            }
+        }
+        
         private tblAccount account;
 
         public tblAccount Account
@@ -160,7 +186,7 @@ namespace WpfClinic.ViewModels
         {
             try
             {
-                service.AddDoctor(Account, Doctor, Shift, Reception, ManagerToView, BirthDate);
+                service.AddDoctor(Account, Doctor, Clinic, Shift, Reception, ManagerToView, BirthDate);
             }
             catch (Exception ex)
             {
@@ -173,7 +199,7 @@ namespace WpfClinic.ViewModels
             if (Account.FullName != null && Account.IdCardNumber != null && Account.Gender != null
                 && BirthDate != null && Account.Citinzenship != null && Account.UserName != null && Account.Pass != null
                 && Doctor.DoctorNumber != null && Doctor.BankAccount != null && Doctor.DoctorNumber != null && Doctor.Department != null
-                && Shift != null && Reception != null)
+                && Shift != null && Reception != null && Clinic != null)
             {
                 if (Account.IdCardNumber.Length == 9 && Account.UserName.Length >= 6 && Account.Pass.Length >= 8
                     && Doctor.DoctorNumber.Length == 5 && Doctor.BankAccount.Length == 10

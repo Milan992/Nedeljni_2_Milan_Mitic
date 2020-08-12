@@ -22,12 +22,37 @@ namespace WpfClinic.ViewModels
             addMaintenance = addMaintenanceOpen;
             account = new tblAccount();
             maintenance = new tblMaintenance();
+            clinicList = service.GetAllClinics();
             genderList = new List<string> { "M", "Z", "N", "X" };
         }
 
         #endregion
 
         #region Properties
+
+        private List<tblClinic> clinicList;
+
+        public List<tblClinic> ClinicList
+        {
+            get { return clinicList; }
+            set
+            {
+                clinicList = value;
+                OnPropertyChanged("ClinicList");
+            }
+        }
+
+        private tblClinic clinic;
+
+        public tblClinic Clinic
+        {
+            get { return clinic; }
+            set
+            {
+                clinic = value;
+                OnPropertyChanged("Clinic");
+            }
+        }
 
         private tblMaintenance maintenance;
 
@@ -113,7 +138,7 @@ namespace WpfClinic.ViewModels
             try
             {
                 Maintenance.ExpandingClinicPermision = Expand;
-                service.AddMaintenance(Account, Maintenance, BirthDate);
+                service.AddMaintenance(Account, Clinic, Maintenance, BirthDate);
             }
             catch (Exception ex)
             {
@@ -125,6 +150,7 @@ namespace WpfClinic.ViewModels
         {
             if (Account.FullName != null && Account.IdCardNumber != null && Account.Gender != null
                 && BirthDate != null && Account.Citinzenship != null && Account.UserName != null && Account.Pass != null
+                && Clinic != null
                 && Expand != null)
             {
                 if (Account.IdCardNumber.Length == 9 && Account.UserName.Length >= 6 && Account.Pass.Length >= 8

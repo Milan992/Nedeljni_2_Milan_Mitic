@@ -105,7 +105,7 @@ Create table tblPatient(
 PatientID int identity (1,1) primary key,
 AccountID int foreign key (AccountID) references tblAccount(AccountID),
 InsuranceCardNumber varchar(30) not null unique,
-InsuranceCardExpiry date,
+InsuranceCardExpiry date not null,
 DoctorNumber varchar(30) foreign key (DoctorNumber) references tblDoctor(DoctorNumber),
 constraint CheckInsuranceCardNumber check(InsuranceCardNumber not like '%[^0-9]%')
 )

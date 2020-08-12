@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -308,7 +309,7 @@ namespace WpfClinic
         /// <param name="account"></param>
         /// <param name="birthDate"></param>
         /// <param name="clinic"></param>
-        internal void AddDoctor(tblAccount account, tblDoctor doctor, tblShift shift, bool reception, tblManager manager, string birthDate)
+        internal void AddDoctor(tblAccount account, tblDoctor doctor, tblClinic clinic, tblShift shift, bool reception, tblManager manager, string birthDate)
         {
             using (ClinicEntities context = new ClinicEntities())
             {
@@ -319,11 +320,8 @@ namespace WpfClinic
                 newAccount.Citinzenship = account.Citinzenship;
                 newAccount.UserName = account.UserName;
                 newAccount.Pass = account.Pass;
+                newAccount.ClinicID = clinic.ClinicID;
                 newAccount.BirthDate = DateTime.ParseExact(birthDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
-
-                tblAccount managerForClinicID = (from m in context.tblAccounts where m.AccountID == manager.AccountID select m).First();
-                newAccount.ClinicID = managerForClinicID.ClinicID;
-
                 context.tblAccounts.Add(newAccount);
                 context.SaveChanges();
 
@@ -348,7 +346,7 @@ namespace WpfClinic
         /// <param name="account"></param>
         /// <param name="birthDate"></param>
         /// <param name="clinic"></param>
-        internal void AddMaintenance(tblAccount account, tblMaintenance maintenance, string birthDate)
+        internal void AddMaintenance(tblAccount account, tblClinic clinic, tblMaintenance maintenance, string birthDate)
         {
             using (ClinicEntities context = new ClinicEntities())
             {
@@ -359,12 +357,13 @@ namespace WpfClinic
                 newAccount.Citinzenship = account.Citinzenship;
                 newAccount.UserName = account.UserName;
                 newAccount.Pass = account.Pass;
+                newAccount.ClinicID = clinic.ClinicID;
                 newAccount.BirthDate = DateTime.ParseExact(birthDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
-                newAccount.ClinicID = account.ClinicID;
                 context.tblAccounts.Add(newAccount);
                 context.SaveChanges();
 
                 tblMaintenance newMaintenance = new tblMaintenance();
+                newMaintenance.AccountID = newAccount.AccountID;
                 if (maintenance.ExpandingClinicPermision == true)
                 {
                     newMaintenance.ExpandingClinicPermision = maintenance.ExpandingClinicPermision;
@@ -462,11 +461,13 @@ namespace WpfClinic
                 newAccount.Citinzenship = account.Citinzenship;
                 newAccount.UserName = account.UserName;
                 newAccount.Pass = account.Pass;
+                newAccount.ClinicID = clinic.ClinicID;
                 newAccount.BirthDate = DateTime.ParseExact(birthDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
                 context.tblAccounts.Add(newAccount);
                 context.SaveChanges();
 
                 tblManager newManager = new tblManager();
+                newManager.AccountID = newAccount.AccountID;
                 newManager.MaxNumberOfDoctors = manager.MaxNumberOfDoctors;
                 newManager.MaxNumberOfRooms = manager.MaxNumberOfRooms;
                 context.tblManagers.Add(newManager);
@@ -492,12 +493,15 @@ namespace WpfClinic
                 newAccount.Citinzenship = account.Citinzenship;
                 newAccount.UserName = account.UserName;
                 newAccount.Pass = account.Pass;
+                newAccount.ClinicID = clinic.ClinicID;
                 newAccount.BirthDate = DateTime.ParseExact(birthDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
                 context.tblAccounts.Add(newAccount);
                 context.SaveChanges();
 
                 tblPatient newPatient = new tblPatient();
+                newPatient.AccountID = newAccount.AccountID;
                 newPatient.InsuranceCardNumber = patient.InsuranceCardNumber;
+                newPatient.DoctorNumber = (from d in context.tblDoctors where d.AccountID == doctor.AccountID select d.DoctorNumber).First();
                 newPatient.InsuranceCardExpiry = DateTime.ParseExact(expiry, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
                 context.tblPatients.Add(newPatient);
                 context.SaveChanges();
@@ -551,6 +555,24 @@ namespace WpfClinic
                 return list;
             }
         }
+
+        public List<tblClinic> GetAllClinics()
+        {
+            try
+            {
+                using (ClinicEntities context = new ClinicEntities())
+                {
+                    List<tblClinic> list = (from c in context.tblClinics select c).ToList();
+                    return list;
+                }
+            }
+            catch 
+            {
+                return null;
+            }
+        }
+
     }
 }
+
 

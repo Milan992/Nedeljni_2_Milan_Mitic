@@ -20,9 +20,10 @@ namespace WpfClinic.ViewModels
         public RegisterViewModel(Register registerOpen)
         {
             account = new tblAccount();
-            doctor = new tblAccount();
+            patient = new tblPatient();
             doctorList = service.GetAllDoctors();
             register = registerOpen;
+            clinicList = service.GetAllClinics();
             genderList = new List<string> { "M", "Z", "N", "X" };
         }
 
@@ -174,8 +175,7 @@ namespace WpfClinic.ViewModels
         {
             if (Account.FullName != null && Account.IdCardNumber != null && Account.Gender != null
                 && BirthDate != null && Account.Citinzenship != null && Account.UserName != null && Account.Pass != null
-                && Patient.InsuranceCardExpiry != null && Patient.InsuranceCardNumber != null
-                && Clinic != null && Doctor != null)
+                && Doctor != null  && Clinic != null && Expiry != null && Patient.InsuranceCardNumber != null)
             {
                 if (Account.IdCardNumber.Length == 9 && Account.UserName.Length >= 6 && Account.Pass.Length >= 8
                     && int.TryParse(Account.IdCardNumber, out int i) && int.TryParse(Patient.InsuranceCardNumber, out int j))

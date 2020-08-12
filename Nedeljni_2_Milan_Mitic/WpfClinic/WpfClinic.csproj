@@ -114,12 +114,14 @@
     <Compile Include="ViewModels\AddManagerViewModel.cs" />
     <Compile Include="ViewModels\AdminViewModel.cs" />
     <Compile Include="ViewModels\DoctorViewModel.cs" />
+    <Compile Include="ViewModels\ExamViewModel.cs" />
     <Compile Include="ViewModels\MaintenanceViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\ManagerViewModel.cs" />
     <Compile Include="ViewModels\MasterViewModel.cs" />
     <Compile Include="ViewModels\PatientViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\SystematicExamViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\AddAdmin.xaml.cs">
       <DependentUpon>AddAdmin.xaml</DependentUpon>
@@ -142,6 +144,9 @@
     <Compile Include="Views\Doctor.xaml.cs">
       <DependentUpon>Doctor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Exam.xaml.cs">
+      <DependentUpon>Exam.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Maintenance.xaml.cs">
       <DependentUpon>Maintenance.xaml</DependentUpon>
     </Compile>
@@ -156,6 +161,9 @@
     </Compile>
     <Compile Include="Views\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SystematicExam.xaml.cs">
+      <DependentUpon>SystematicExam.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -197,6 +205,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Exam.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Maintenance.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -214,6 +226,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Register.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SystematicExam.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

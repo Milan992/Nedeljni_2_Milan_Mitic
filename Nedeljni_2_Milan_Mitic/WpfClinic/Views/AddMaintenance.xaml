@@ -120,5 +120,9 @@
                 Margin="120,450,0,0"
                 VerticalAlignment="Top"
                 Width="75" />
+        <Label Content="9 digits"
+               HorizontalAlignment="Left"
+               Margin="310,40,0,0"
+               VerticalAlignment="Top" />
     </Grid>
 </Window>

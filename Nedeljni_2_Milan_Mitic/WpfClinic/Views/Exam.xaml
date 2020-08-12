@@ -1,0 +1,21 @@
+﻿<Window x:Class="WpfClinic.Views.Exam"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfClinic.Views"
+        mc:Ignorable="d"
+        Title="Exam" Height="450" Width="800">
+    <Grid>
+        <Label Margin="10,30,0,0"
+               FontSize="22">
+            Checking for active virus sympthoms.
+        </Label>
+        <ProgressBar x:Name="pbProgress" 
+                     HorizontalAlignment="Left" 
+                     Height="41" Margin="10,79,0,0"
+                     VerticalAlignment="Top" 
+                     Width="479" 
+                     Value="{Binding Percent, UpdateSourceTrigger=PropertyChanged}" />
+    </Grid>
+</Window>
