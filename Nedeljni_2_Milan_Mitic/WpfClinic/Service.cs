@@ -611,7 +611,7 @@ namespace WpfClinic
                         tblPatient patient = (from p in context.tblPatients where p.AccountID == item.AccountID select p).First();
                         patients.Add(patient);
                     }
-                    catch 
+                    catch
                     {
                         continue;
                     }
@@ -622,6 +622,39 @@ namespace WpfClinic
             }
         }
 
+        public void AddMaintenanceReport(int hours, string description, tblMaintenance maintenance)
+        {
+            using (StreamWriter sw = new StreamWriter(@"..\..\MaintenanceReports" + maintenance.MaintenanceID + ".txt", true))
+            {
+                sw.WriteLine(DateTime.Now.ToString() + " Duration: " + hours.ToString() + " hours, Description: " + description);
+            }
+        }
+
+        public List<Service> GetMaintenanceReports(tblMaintenance maintenance)
+        {
+            List<Service> list = new List<Service>();
+            try
+            {
+                using (StreamReader sr = new StreamReader(@"..\..\MaintenanceReports" + maintenance.MaintenanceID + ".txt"))
+                {
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        Service a = new Service();
+                        a.Report = line;
+                        list.Add(a);
+                    }
+                }
+            }
+            catch
+            {
+                Service a = new Service();
+                a.Report = "no reports";
+                list.Add(a);
+            }
+            return list;
+        }
+        public string Report { get; set; }
     }
 }
 

@@ -5,21 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfClinic.Views"
         mc:Ignorable="d"
-        Title="Maintenance" Height="450" Width="800">
+        Title="Maintenance" Height="400" Width="800">
     <Grid>
         <Button Content="Create report"
-                Command="{Binding AddReport, UpdateSourceTrigger=PropertyChanged}"
+                Command="{Binding MaintenanceReport, UpdateSourceTrigger=PropertyChanged}"
                 HorizontalAlignment="Left"
                 Margin="10,10,0,0"
                 VerticalAlignment="Top"
                 Width="150"
                 Height="33" />
-        <Button Content="See your reports"
-                Command="{Binding ViewReports, UpdateSourceTrigger=PropertyChanged}"
+        <Button Content="Show your reports"
+                Command="{Binding ShowReports, UpdateSourceTrigger=PropertyChanged}"
                 HorizontalAlignment="Left"
-                Margin="10,50,0,0"
+                Margin="170,10,0,0"
                 VerticalAlignment="Top"
                 Width="150"
                 Height="33" />
+        <Label Margin="10,50,-10,-63">Your reports:</Label>
+        <DataGrid
+            ItemsSource="{Binding Reports}" 
+            Height="200"
+            Margin="10,77,22,92"
+            AutoGenerateColumns="True">
+        </DataGrid>
     </Grid>
 </Window>
