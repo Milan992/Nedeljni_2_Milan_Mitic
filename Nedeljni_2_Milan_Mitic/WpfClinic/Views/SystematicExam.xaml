@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfClinic.Views"
         mc:Ignorable="d"
-        Title="SystematicExam" Height="450" Width="800">
+        Title="SystematicExam" Height="200" Width="800">
     <Grid>
         <Label Margin="10,30,0,0"
                FontSize="22">

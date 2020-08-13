@@ -470,6 +470,7 @@ namespace WpfClinic
                 newManager.AccountID = newAccount.AccountID;
                 newManager.MaxNumberOfDoctors = manager.MaxNumberOfDoctors;
                 newManager.MaxNumberOfRooms = manager.MaxNumberOfRooms;
+                newManager.NumberOfFails = 0;
                 context.tblManagers.Add(newManager);
                 context.SaveChanges();
                 MessageBox.Show("Manager saved.");
@@ -566,9 +567,58 @@ namespace WpfClinic
                     return list;
                 }
             }
-            catch 
+            catch
             {
                 return null;
+            }
+        }
+
+        internal string GetRiskPatientsAge()
+        {
+            string s;
+            List<string> list = new List<string>();
+            int age = 0;
+            using (StreamReader sr = new StreamReader(@"..\..\AtRiskPatients.txt"))
+            {
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    list.Add(line);
+                }
+                foreach (var item in list)
+                {
+                    string[] array = item.Split(',', ':');
+                    age = age + Convert.ToInt32(array[2]);
+                }
+            }
+            double average = age / list.Count;
+            s = Convert.ToString(Convert.ToInt32(average));
+
+            return "average age of patients with risk sympthoms is: " + s;
+        }
+
+        public string Statistics(tblAdmin admin)
+        {
+            using (ClinicEntities context = new ClinicEntities())
+            {
+                tblAccount adminAccount = (from a in context.tblAccounts where a.AccountID == admin.AccountID select a).First();
+                List<tblAccount> accounts = (from a in context.tblAccounts where adminAccount.ClinicID == a.ClinicID select a).ToList();
+                List<tblPatient> patients = new List<tblPatient>();
+                foreach (var item in accounts)
+                {
+                    try
+                    {
+                        tblPatient patient = (from p in context.tblPatients where p.AccountID == item.AccountID select p).First();
+                        patients.Add(patient);
+                    }
+                    catch 
+                    {
+                        continue;
+                    }
+                }
+                int employees = accounts.Count - patients.Count;
+                int patientsNumber = patients.Count;
+                return "Number of employees: " + employees.ToString() + ".\nNumber of patients: " + patientsNumber.ToString();
             }
         }
 

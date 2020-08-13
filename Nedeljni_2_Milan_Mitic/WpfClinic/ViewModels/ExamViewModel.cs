@@ -78,7 +78,6 @@ namespace WpfClinic.ViewModels
             }
         }
 
-
         public BackgroundWorker worker = new BackgroundWorker();
 
         #endregion
@@ -94,7 +93,7 @@ namespace WpfClinic.ViewModels
                     //searchig for first available doctor that recepts patients.
                     Doctor = (from d in context.tblDoctors where d.PatientReception == true select d).First();
                     Random random = new Random();
-                    int i = 1;// random.Next(0, 2);
+                    int i = random.Next(0, 2);
                     // 1 means that patient has sympthoms.
                     if (i == 1)
                     {
@@ -140,7 +139,7 @@ namespace WpfClinic.ViewModels
                                 tblAccount account = (from a in context.tblAccounts where a.AccountID == Patient.AccountID select a).First();
                                 string diff = (DateTime.Now -account.BirthDate).TotalDays.ToString();
                                 double years = Convert.ToDouble(diff) / 365;
-                                sw.WriteLine(account.FullName + ", age: {0}, has active flue sympthoms", years);
+                                sw.WriteLine(account.FullName + ", age: {0}, has active flue sympthoms", Convert.ToInt32(years));
                             }
                         }
                     }
@@ -165,10 +164,12 @@ namespace WpfClinic.ViewModels
                     List<tblManager> list = (from m in context.tblManagers select m).ToList();
                     foreach (var manager in list)
                     {
-                        manager.NumberOfFails++;
+                        tblManager managerToEdit = (from me in context.tblManagers where me.AccountID == manager.AccountID select me).First();
+                        managerToEdit.NumberOfFails++;
                         context.SaveChanges();
                     }
                 }
+                exam.Close();
             }
         }
 

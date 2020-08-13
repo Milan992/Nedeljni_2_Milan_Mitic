@@ -15,7 +15,6 @@ namespace WpfClinic.ViewModels
     {
         SystematicExam systematicExam;
         Service service = new Service();
-        static int counter;
 
         #region Costructors
 
@@ -33,7 +32,6 @@ namespace WpfClinic.ViewModels
             worker.WorkerReportsProgress = true;
             worker.RunWorkerAsync();
             doctor = new tblDoctor();
-            counter = 0;
         }
 
         #endregion
@@ -86,6 +84,7 @@ namespace WpfClinic.ViewModels
         public void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             MessageBox.Show("Systematic exam completed");
+            systematicExam.Close();
         }
 
         public void worker_DoWork(object sender, DoWorkEventArgs e)

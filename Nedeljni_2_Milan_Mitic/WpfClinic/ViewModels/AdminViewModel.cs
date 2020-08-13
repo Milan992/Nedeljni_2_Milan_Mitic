@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using WpfClinic.Model;
 using WpfClinic.Views;
@@ -153,6 +154,69 @@ namespace WpfClinic.ViewModels
             return true;
         }
 
+        private ICommand riskStats;
+
+        public ICommand RiskStats
+        {
+            get
+            {
+                if (riskStats == null)
+                {
+                    riskStats = new RelayCommand(param => RiskStatsExecute(), param => CanRiskStatsExecute());
+                }
+
+                return riskStats;
+            }
+        }
+
+        private void RiskStatsExecute()
+        {
+            try
+            {
+                MessageBox.Show(service.GetRiskPatientsAge());
+            }
+            catch 
+            {
+                MessageBox.Show("There are no patients wiht risky sympthoms.");
+            }
+        }
+
+        private bool CanRiskStatsExecute()
+        {
+            return true;
+        }
+
+        private ICommand statistics;
+
+        public ICommand Statistics
+        {
+            get
+            {
+                if (statistics == null)
+                {
+                    statistics = new RelayCommand(param => StatisticsExecute(), param => CanStatisticsExecute());
+                }
+
+                return statistics;
+            }
+        }
+
+        private void StatisticsExecute()
+        {
+            try
+            {
+                MessageBox.Show(service.Statistics(AdminToView));
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private bool CanStatisticsExecute()
+        {
+            return true;
+        }
         #endregion
     }
 }
