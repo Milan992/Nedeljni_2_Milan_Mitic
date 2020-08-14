@@ -9,7 +9,7 @@
     <Grid>
         <Label Margin="10,30,0,0"
                FontSize="22">
-            Taking a systematic exam.
+            Taking a systematic exam. . .
         </Label>
         <ProgressBar x:Name="pbProgress" 
                      HorizontalAlignment="Left" 

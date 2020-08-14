@@ -123,6 +123,7 @@
     <Compile Include="ViewModels\PatientViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\SystematicExamViewModel.cs" />
+    <Compile Include="ViewModels\UpdateClinicViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\AddAdmin.xaml.cs">
       <DependentUpon>AddAdmin.xaml</DependentUpon>
@@ -168,6 +169,9 @@
     </Compile>
     <Compile Include="Views\SystematicExam.xaml.cs">
       <DependentUpon>SystematicExam.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdateClinic.xaml.cs">
+      <DependentUpon>UpdateClinic.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -238,6 +242,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SystematicExam.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdateClinic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -42,5 +42,20 @@
                 VerticalAlignment="Top"
                 Width="150"
                 Height="33" />
+        <Button Content="Update clinic"
+                Command="{Binding UpdateClinic, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="253,257,0,0"
+                VerticalAlignment="Top"
+                Width="150"
+                Height="20" />
+        <Label Margin="11,128,10,167">Clinics:</Label>
+        <DataGrid
+            ItemsSource="{Binding Clinics}" 
+            SelectedItem="{Binding Clinic}"
+            Height="100"
+            Margin="10,77,22,92"
+            AutoGenerateColumns="True">
+        </DataGrid>
     </Grid>
 </Window>

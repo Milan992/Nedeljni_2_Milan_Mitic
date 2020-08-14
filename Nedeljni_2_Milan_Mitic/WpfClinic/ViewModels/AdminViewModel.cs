@@ -27,6 +27,7 @@ namespace WpfClinic.ViewModels
         {
             admin = adminOpen;
             adminToView = administrator;
+            clinics = service.GetAllClinics();
         }
 
         #endregion
@@ -44,6 +45,31 @@ namespace WpfClinic.ViewModels
                 OnPropertyChanged("AdminToView");
             }
         }
+
+        private tblClinic clinic;
+
+        public tblClinic Clinic
+        {
+            get { return clinic; }
+            set
+            {
+                clinic = value;
+                OnPropertyChanged("Clinic");
+            }
+        }
+
+        private List<tblClinic> clinics;
+
+        public List<tblClinic> Clinics
+        {
+            get { return clinics; }
+            set
+            {
+                clinics = value;
+                OnPropertyChanged("Clinics");
+            }
+        }
+
 
         #endregion
 
@@ -175,7 +201,7 @@ namespace WpfClinic.ViewModels
             {
                 MessageBox.Show(service.GetRiskPatientsAge());
             }
-            catch 
+            catch
             {
                 MessageBox.Show("There are no patients wiht risky sympthoms.");
             }
@@ -207,7 +233,7 @@ namespace WpfClinic.ViewModels
             {
                 MessageBox.Show(service.Statistics(AdminToView));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
@@ -217,6 +243,48 @@ namespace WpfClinic.ViewModels
         {
             return true;
         }
+
+        private ICommand updateClinic;
+
+        public ICommand UpdateClinic
+        {
+            get
+            {
+                if (updateClinic == null)
+                {
+                    updateClinic = new RelayCommand(param => UpdateClinicExecute(), param => CanUpdateClinicExecute());
+                }
+
+                return updateClinic;
+            }
+        }
+
+        private void UpdateClinicExecute()
+        {
+            try
+            {
+                UpdateClinic updateClinic = new UpdateClinic(Clinic);
+                updateClinic.ShowDialog();
+                clinics = service.GetAllClinics();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private bool CanUpdateClinicExecute()
+        {
+            if (Clinic != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         #endregion
     }
 }

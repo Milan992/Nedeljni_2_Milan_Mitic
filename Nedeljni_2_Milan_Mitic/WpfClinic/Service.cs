@@ -655,6 +655,45 @@ namespace WpfClinic
             return list;
         }
         public string Report { get; set; }
+
+        public void UpdateClinic(tblClinic clinic, tblOwner owner)
+        {
+            using (ClinicEntities context = new ClinicEntities())
+            {
+                tblClinic clinicToEdit = (from c in context.tblClinics where c.ClinicID == clinic.ClinicID select c).First();
+                tblOwner newOwner = new tblOwner();
+
+                if (owner.JMBG != GetOwner(clinic).JMBG)
+                {
+                    newOwner.FullName = owner.FullName;
+                    newOwner.JMBG = owner.JMBG;
+                    context.tblOwners.Add(newOwner);
+                    context.SaveChanges();
+                    clinicToEdit.OwnerID = newOwner.OwnerID;
+                }
+                if (owner.FullName != GetOwner(clinic).FullName)
+                {
+                    tblOwner ownerToEdit = (from o in context.tblOwners where o.OwnerID == clinic.OwnerID select o).First();
+                    ownerToEdit.FullName = owner.FullName;
+                    context.SaveChanges();
+                }
+
+                clinicToEdit.NumberOfAmbulanceCarParkings = clinic.NumberOfAmbulanceCarParkings;
+                clinicToEdit.NumberOfInvalidEntrances = clinic.NumberOfInvalidEntrances;
+                context.SaveChanges();
+
+                MessageBox.Show("Clinic updated");
+            }
+        }
+
+        public tblOwner GetOwner(tblClinic clinic)
+        {
+            using (ClinicEntities context = new ClinicEntities())
+            {
+                tblOwner owner = (from o in context.tblOwners where o.OwnerID == clinic.OwnerID select o).First();
+                return owner;
+            }
+        }
     }
 }
 

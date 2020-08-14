@@ -9,7 +9,7 @@
     <Grid>
         <Label Margin="10,30,0,0"
                FontSize="22">
-            Checking for active virus sympthoms.
+            Checking for active virus sympthoms. . . 
         </Label>
         <ProgressBar x:Name="pbProgress" 
                      HorizontalAlignment="Left" 
