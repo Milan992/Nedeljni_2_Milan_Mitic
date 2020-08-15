@@ -96,6 +96,7 @@ namespace WpfDoctor.ViewModels
             {
                 AddDoctor addDoctor = new AddDoctor(ManagerToView);
                 addDoctor.ShowDialog();
+                doctors = service.GetAllDoctors();
             }
             catch (Exception ex)
             {
