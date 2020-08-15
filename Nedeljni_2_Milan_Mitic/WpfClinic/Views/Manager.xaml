@@ -15,5 +15,12 @@
                 VerticalAlignment="Top"
                 Width="150"
                 Height="33" />
+        <DataGrid
+            ItemsSource="{Binding Doctors}" 
+            SelectedItem="{Binding Doctor}"
+            Height="100"
+            Margin="10,59,22,260"
+            AutoGenerateColumns="True">
+        </DataGrid>
     </Grid>
 </Window>

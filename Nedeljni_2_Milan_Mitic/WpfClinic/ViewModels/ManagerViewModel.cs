@@ -28,6 +28,7 @@ namespace WpfDoctor.ViewModels
         {
             manager = managerOpen;
             managerToView = managerView;
+            doctors = service.GetAllDoctors();
         }
 
         #endregion
@@ -43,6 +44,30 @@ namespace WpfDoctor.ViewModels
             {
                 managerToView = value;
                 OnPropertyChanged("ManagerToView");
+            }
+        }
+
+        private tblAccount doctor;
+
+        public tblAccount Doctor
+        {
+            get { return doctor; }
+            set
+            {
+                doctor = value;
+                OnPropertyChanged("Doctor");
+            }
+        }
+
+        private List<tblAccount> doctors;
+
+        public List<tblAccount> Doctors
+        {
+            get { return doctors; }
+            set
+            {
+                doctors = value;
+                OnPropertyChanged("Doctor");
             }
         }
 
@@ -82,6 +107,39 @@ namespace WpfDoctor.ViewModels
         {
             return true;
         }
+        private ICommand updateDoctor;
+
+        public ICommand UpdateDoctor
+        {
+            get
+            {
+                if (updateDoctor == null)
+                {
+                    updateDoctor = new RelayCommand(param => UpdateDoctorExecute(), param => CanUpdateDoctorExecute());
+                }
+
+                return updateDoctor;
+            }
+        }
+
+        private void UpdateDoctorExecute()
+        {
+            try
+            {
+                AddDoctor addDoctor = new AddDoctor(ManagerToView, Doctor);
+                addDoctor.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private bool CanUpdateDoctorExecute()
+        {
+            return true;
+        }
+
 
         #endregion
     }

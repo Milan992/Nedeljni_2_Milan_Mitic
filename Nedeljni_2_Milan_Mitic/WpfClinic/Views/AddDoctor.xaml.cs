@@ -32,5 +32,11 @@ namespace WpfClinic.Views
             InitializeComponent();
             this.DataContext = new AddDoctorViewModel(this, manager);
         }
+
+        public AddDoctor(tblManager manager, tblAccount doctor)
+        {
+            InitializeComponent();
+            this.DataContext = new AddDoctorViewModel(this, manager, doctor);
+        }
     }
 }

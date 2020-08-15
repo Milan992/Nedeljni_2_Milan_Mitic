@@ -39,6 +39,17 @@ namespace WpfClinic.ViewModels
             addDoctor = addDoctorOpen;
         }
 
+        public AddDoctorViewModel(AddDoctor addDoctorOpen, tblManager manager, tblAccount doctorToView)
+        {
+            doctor = new tblDoctor();
+            managerToView = manager;
+            account = doctorToView;
+            genderList = new List<string> { "M", "Z", "N", "X" };
+            clinicList = service.GetAllClinics();
+            shiftList = service.GetAllShifts();
+            addDoctor = addDoctorOpen;
+        }
+
         #endregion
 
         #region Properties
