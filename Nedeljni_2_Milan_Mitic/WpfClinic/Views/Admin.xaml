@@ -1,0 +1,61 @@
+﻿<Window x:Class="WpfClinic.Views.Admin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfClinic.Views"
+        mc:Ignorable="d"
+        Title="Admin" Height="450" Width="800">
+    <Grid>
+        <Button Content="Add patient"
+                Command="{Binding NewAccount, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="10,10,0,0"
+                VerticalAlignment="Top"
+                Width="150"
+                Height="33" />
+        <Button Content="Add maintenance"
+                Command="{Binding AddMaintenance, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="10,50,0,0"
+                VerticalAlignment="Top"
+                Width="150"
+                Height="33" />
+        <Button Content="Add manager"
+                Command="{Binding AddManager, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="10,90,0,0"
+                VerticalAlignment="Top"
+                Width="150"
+                Height="33" />
+        <Button Content="Employee/patient statistics"
+                Command="{Binding Statistics, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="170,10,0,0"
+                VerticalAlignment="Top"
+                Width="150"
+                Height="33" />
+        <Button Content="Risky patients statistics"
+                Command="{Binding RiskStats, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="170,50,0,0"
+                VerticalAlignment="Top"
+                Width="150"
+                Height="33" />
+        <Button Content="Update clinic"
+                Command="{Binding UpdateClinic, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="253,257,0,0"
+                VerticalAlignment="Top"
+                Width="150"
+                Height="20" />
+        <Label Margin="11,128,10,167">Clinics:</Label>
+        <DataGrid
+            ItemsSource="{Binding Clinics}" 
+            SelectedItem="{Binding Clinic}"
+            Height="100"
+            Margin="10,77,22,92"
+            AutoGenerateColumns="True">
+        </DataGrid>
+    </Grid>
+</Window>

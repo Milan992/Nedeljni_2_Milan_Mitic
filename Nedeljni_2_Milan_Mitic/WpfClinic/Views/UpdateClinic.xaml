@@ -1,0 +1,70 @@
+﻿<Window x:Class="WpfClinic.Views.UpdateClinic"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfClinic.Views"
+        mc:Ignorable="d"
+        Title="Update Clinic"
+        Height="450"
+        Width="450">
+    <Grid>
+        <Label Content="Owner name:"
+               HorizontalAlignment="Left"
+               Margin="40,40,0,0"
+               VerticalAlignment="Top" />
+        <Label Content="Owner JMBG:"
+               HorizontalAlignment="Left"
+               Margin="40,70,0,0"
+               VerticalAlignment="Top" />
+        <Label Content="Ambulance car parkings:"
+               HorizontalAlignment="Left"
+               Margin="40,100,0,0"
+               VerticalAlignment="Top" />
+        <Label Content="No of nvalid entrances:"
+               HorizontalAlignment="Left"
+               Margin="40,130,0,0"
+               VerticalAlignment="Top" />
+        <TextBox HorizontalAlignment="Left"
+                 Height="23"
+                 Margin="180,43,0,0"
+                 TextWrapping="Wrap"
+                 Text="{Binding Owner.FullName, UpdateSourceTrigger=PropertyChanged}"
+                 VerticalAlignment="Top"
+                 Width="120" />
+        <TextBox HorizontalAlignment="Left"
+                 Height="23"
+                 Margin="180,73,0,0"
+                 TextWrapping="Wrap"
+                 Text="{Binding Owner.JMBG, UpdateSourceTrigger=PropertyChanged}"
+                 VerticalAlignment="Top"
+                 Width="120" />
+        <TextBox HorizontalAlignment="Left"
+                 Height="23"
+                 Margin="180,103,0,0"
+                 TextWrapping="Wrap"
+                 Text="{Binding Clinic.NumberOfAmbulanceCarParkings, UpdateSourceTrigger=PropertyChanged}"
+                 VerticalAlignment="Top"
+                 Width="120" />
+        <TextBox HorizontalAlignment="Left"
+                 Height="23"
+                 Margin="180,133,0,0"
+                 TextWrapping="Wrap"
+                 Text="{Binding Clinic.NumberOfInvalidEntrances, UpdateSourceTrigger=PropertyChanged}"
+                 VerticalAlignment="Top"
+                 Width="120" />
+        <Button Content="Save"
+                Command="{Binding Save, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="40,380,0,0"
+                VerticalAlignment="Top"
+                Width="75"
+                RenderTransformOrigin="0.32,2.25" />
+        <Button Content="Close"
+                Command="{Binding Close, UpdateSourceTrigger=PropertyChanged}"
+                HorizontalAlignment="Left"
+                Margin="120,380,0,0"
+                VerticalAlignment="Top"
+                Width="75" />
+    </Grid>
+</Window>

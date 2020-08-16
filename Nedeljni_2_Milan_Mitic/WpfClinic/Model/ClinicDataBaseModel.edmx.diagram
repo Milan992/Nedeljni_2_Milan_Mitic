@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="242429c1884f4a8c90438a5b46b590ee" Name="Diagram1" ZoomLevel="79">
+        <EntityTypeShape EntityType="ClinicModel.tblAccount" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicModel.tblAdmin" Width="1.5" PointX="7.5" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicModel.tblClinic" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicModel.tblDoctor" Width="1.5" PointX="9.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicModel.tblMaintenance" Width="1.5" PointX="7.5" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicModel.tblManager" Width="1.5" PointX="7.5" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicModel.tblOwner" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicModel.tblPatient" Width="1.5" PointX="12" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClinicModel.tblShift" Width="1.5" PointX="7.5" PointY="7.25" IsExpanded="true" />
+        <AssociationConnector Association="ClinicModel.FK__tblAccoun__Clini__33607FA3" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicModel.FK__tblAdmin__Accoun__37311087" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicModel.FK__tblDoctor__Accou__40BA7AC1" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicModel.FK__tblMainte__Accou__4E1475DF" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicModel.FK__tblManage__Accou__3A0D7D32" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicModel.FK__tblPatien__Accou__494FC0C2" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicModel.FK__tblClinic__Owner__2ACB39A2" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicModel.FK__tblDoctor__Manag__4396E76C" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicModel.FK__tblDoctor__Shift__42A2C333" ManuallyRouted="false" />
+        <AssociationConnector Association="ClinicModel.FK__tblPatien__Docto__4A43E4FB" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
